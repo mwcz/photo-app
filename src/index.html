@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title></title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <style type="text/css" media="screen">
+            html, body {
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            body {
+                font-family: 'Roboto', sans-serif;
+                background-color: #030000;
+                color: #F7F7F7;
+                position: relative;
+            }
+            a:first-child {
+                margin-left: 0;
+            }
+            a {
+                margin: 10px;
+                padding: 6px 8px;
+                background-color: #A19B88;
+                color: #F7F7F7;
+                font-weight: bold;
+                border-radius: 2px;
+                text-decoration: none;
+            }
+            a.active {
+                background-color: #3E3F41;
+            }
+            .photos {
+                text-align: center;
+            }
+            .photo {
+                position: relative;
+                padding: 0;
+                overflow: hidden;
+                display: inline-block;
+                width: 220px;
+                height: 132px;
+                margin: 5px 7px;
+                box-sizing: content-box;
+            }
+            .photo.full {
+                position: fixed;
+                width: auto;
+                height: auto;
+                top: 0;
+                left: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                background-color: black;
+                z-index: 10;
+            }
+            .photo.full img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .photo.full::after {
+                content: attr(data-title);
+                position: absolute;
+                bottom: 4vh;
+                left: 50%;
+                transform: translateX(-50%);
+                text-transform: uppercase;
+                font-weight: bold;
+                display: block;
+                text-align: center;
+                font-size: 2.8vh;
+                letter-spacing: 0.5vh;
+            }
+            .photo.thumb:hover::before {
+                content: attr(data-title);
+                position: absolute;
+                opacity: 1;
+            }
+            /* .photo.thumb::before { */
+            /*     content: attr(data-title); */
+            /*     position: absolute; */
+            /*     opacity: 1.0; */
+            /* } */
+            .photo::before {
+                content: attr(data-title);
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                opacity: 0;
+                transition: opacity 0.1s ease-out;
+
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 1.8vh;
+                letter-spacing: 0.5vh;
+                text-shadow: 0px 0.5px 2px rgba(0, 0, 0, 0.2);
+                background-color: rgba(0,0,0,0.3);
+                padding: 2px 5px;
+                max-width: 87%;
+                word-wrap: break-word;
+            }
+        </style>
+    </head>
+    <body>
+        <main></main>
+        <script src="/bundle.js"></script>
+    </body>
+</html>
