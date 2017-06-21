@@ -17,6 +17,19 @@
                 color: #F7F7F7;
                 position: relative;
             }
+            header {
+                text-align: center;
+            }
+            .logo {
+                font-size: 2vh;
+                color: #030000;
+                background-color: #F7F7F7;
+                margin: 8px 8px 4px;
+                padding: 0;
+                letter-spacing: 0.5vh;
+                display: inline-block;
+                padding: 2px 5px;
+            }
             a:first-child {
                 margin-left: 0;
             }
@@ -61,6 +74,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
+                max-width: 100%;
                 transform: translate(-50%, -50%);
             }
             .photo.full::after {
@@ -93,6 +107,7 @@
                 left: 10px;
                 opacity: 0;
                 transition: opacity 0.1s ease-out;
+                text-align: left;
 
                 text-transform: uppercase;
                 font-weight: bold;
@@ -104,10 +119,22 @@
                 max-width: 87%;
                 word-wrap: break-word;
             }
+            footer {
+                color: #6f6f6f;
+                font-size: 0.6rem;
+                text-align: center;
+                margin-bottom: 6px;
+            }
         </style>
     </head>
     <body>
+        <header>
+            <h1 class="logo">CLAYTO.COM</h1>
+        </header>
         <main></main>
+        <footer>
+            <p>&copy; 2003-2017 Michael Clayton.  All rights reserved.</p>
+        </footer>
         <script src="/bundle.js"></script>
     </body>
 </html>
