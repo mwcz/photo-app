@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import PhotoViewer from './PhotoViewer';
-import Home from './Home';
 import Error from './Error';
 import { Router } from 'preact-router';
 

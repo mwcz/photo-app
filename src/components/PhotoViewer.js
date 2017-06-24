@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 import linkState from 'linkstate';
-import sortBy from 'lodash/sortBy';
 
 import Photo from './Photo';
 
@@ -12,17 +11,21 @@ class PhotoViewer extends Component {
 
         this.state = {
             photos: null,
-            activePhoto: null,
+            activepid: null,
             loading: true,
         };
+
         this.pushState = this.pushState.bind(this);
+        this.activatePid = this.activatePid.bind(this);
+        this.deactivatePid = this.deactivatePid.bind(this);
     }
     componentDidMount() {
         fetch('photos.json')
             .then(rsp => rsp.json())
-            .then(photoData => {
-                console.log(photoData);
-                const photos = sortBy(photoData, 'post_date').reverse();
+            .then(photos => {
+                // console.log(photoData);
+                // const photos = sortBy(photoData, 'post_date').reverse();
+                // console.log(JSON.stringify(photos));
                 this.setState({
                     photos,
                     activepid: -1,
@@ -30,6 +33,17 @@ class PhotoViewer extends Component {
                 });
             })
             .catch(err => console.error(err));
+    }
+    activatePid(activepid) {
+        console.log(`[PhotoViewer] activatePid(${activepid})`);
+        this.setState({ activepid });
+    }
+    pidActivator(activepid) {
+        return () => this.activatePid(activepid);
+    }
+    deactivatePid() {
+        this.setState({ activepid: -1 });
+        console.log(`[PhotoViewer] deactivating pid`);
     }
     pushState(evt) {
         // const country = evt.target.dataset.country;
@@ -42,7 +56,19 @@ class PhotoViewer extends Component {
             <div class="photos">
                 {loading
                         ? <p>Please wait...</p>
-                        : (photos.map(p => <Photo {...p} size={activepid == p.id ? 'full' : 'thumb'} key={p.id} />))
+                        : (photos.map((p, i, c) => {
+                            const prev = c[i+1] && c[i+1].id;
+                            const next = c[i-1] && c[i-1].id;
+                            return <Photo {...p}
+                                selected={activepid === p.id}
+                                key={p.id}
+                                selectNext={this.pidActivator(next)}
+                                selectPrev={this.pidActivator(prev)}
+                                active={p.id === activepid}
+                                select={this.pidActivator(p.id)}
+                                deselect={this.deactivatePid}
+                            />;
+                        }))
                 }
             </div>
         );
