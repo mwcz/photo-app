@@ -36,11 +36,8 @@ class Photo extends Component {
         this.setState({ isActive: true, activeImg: true });
         window.p = this;
         this.props.select();
-        console.log('showing...');
-        console.log('add <img>');
         this.timeouts.addClass = setTimeout(
             () => {
-                console.log('add .active');
                 this.setState({ activeClass: true });
             },
             50
@@ -53,11 +50,8 @@ class Photo extends Component {
         // removing the image, so the transition can play.
         this.setState({ isActive: false, activeClass: false });
         this.props.deselect();
-        console.log('hiding...');
-        console.log('remove .active');
         this.timeouts.removeImage = setTimeout(
             () => {
-                console.log('remove <img>');
                 this.setState({ activeImg: false });
             },
             500
@@ -83,7 +77,7 @@ class Photo extends Component {
                     {loadingThumb && <p>Loading...</p>}
                 </span>
                 <span class={ activeClass ? "photo full active" : "photo full" } onclick={this.hidePhoto} data-title={title} data-pid={id} data-color={color0}>
-                    /* if this is the active image, or it's already been loaded, display the img */
+                    {/* if this is the active image, or it's already been loaded, display the img */}
                     { (activeImg || !loadingFull) && <img src={image} onclick={selectNext} onload={this.doneLoadingFull} />}
                     {loadingFull && <p>Loading...</p>}
                 </span>

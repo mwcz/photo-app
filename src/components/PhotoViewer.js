@@ -23,9 +23,7 @@ class PhotoViewer extends Component {
         fetch('./photos.json')
             .then(rsp => rsp.json())
             .then(photos => {
-                // console.log(photoData);
                 // const photos = sortBy(photoData, 'post_date').reverse();
-                // console.log(JSON.stringify(photos));
                 this.setState({
                     photos,
                     activepid: -1,
@@ -35,7 +33,6 @@ class PhotoViewer extends Component {
             .catch(err => console.error(err));
     }
     activatePid(activepid) {
-        console.log(`[PhotoViewer] activatePid(${activepid})`);
         this.setState({ activepid });
     }
     pidActivator(activepid) {
@@ -43,7 +40,6 @@ class PhotoViewer extends Component {
     }
     deactivatePid() {
         this.setState({ activepid: -1 });
-        console.log(`[PhotoViewer] deactivating pid`);
     }
     pushState(evt) {
         // const country = evt.target.dataset.country;
