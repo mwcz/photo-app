@@ -20,7 +20,7 @@ class PhotoViewer extends Component {
         this.deactivatePid = this.deactivatePid.bind(this);
     }
     componentDidMount() {
-        fetch('photos.json')
+        fetch('./photos.json')
             .then(rsp => rsp.json())
             .then(photos => {
                 // console.log(photoData);
