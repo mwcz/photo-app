@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --inline",
-    "build": "mkdir -p build/ && cp -r ./src/* build/ && webpack"
+    "build": "rm -rf build && mkdir -p build/ && cp -r ./src/* build/ && webpack"
   },
   "author": "Michael Clayton <mwc@clayto.com>",
   "license": "ISC",
