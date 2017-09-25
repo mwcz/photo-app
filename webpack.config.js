@@ -1,3 +1,5 @@
+const MinifyPlugin = require("babel-minify-webpack-plugin");
+
 module.exports = {
     // input
     entry: './src',
@@ -24,6 +26,10 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+        new MinifyPlugin()
+    ],
 
     // sourcemaps
     devtool: 'source-map',
